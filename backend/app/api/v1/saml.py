@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
 from fastapi.responses import Response
-
+from app.security.dependencies import get_current_user
 from sqlalchemy.orm import Session
 
 from app.database.session import get_db
@@ -19,18 +19,9 @@ router = APIRouter(
 @router.get("/login")
 def saml_login(
     sp: str,
+    current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-
-    current_user = db.query(User).filter(
-        User.email == "mananpathak@gmail.com"
-    ).first()
-
-    if current_user is None:
-        raise HTTPException(
-            status_code=404,
-            detail="User not found."
-        )
 
     service_provider = db.query(ServiceProvider).filter(
         ServiceProvider.entity_id == sp

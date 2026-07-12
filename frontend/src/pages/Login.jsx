@@ -102,76 +102,136 @@ function Login() {
 
     return (
 
-        <div className="flex justify-center items-center h-[85vh]">
+        <div className="min-h-screen bg-[#0B0F14] flex items-center justify-center p-6">
 
-            <div className="bg-white p-10 rounded-xl shadow-xl w-[450px]">
+            <div className="w-full max-w-md">
 
-                <h1 className="text-3xl font-bold mb-8 text-center">
+                <div className="text-center mb-8">
+                    <p className="font-['IBM_Plex_Mono'] text-xs tracking-widest text-[#4FD1C5] uppercase mb-3">
+                        SAMLGuard
+                    </p>
+                    <h1 className="font-['IBM_Plex_Mono'] text-2xl font-bold text-[#E6EAF0]">
+                        Identity Provider Login
+                    </h1>
+                    <p className="font-['IBM_Plex_Sans'] text-sm text-[#8A94A3] mt-3">
+                        Authenticate to generate a SAML assertion
+                    </p>
+                </div>
 
-                    SAML Identity Provider
+                <div className="bg-[#131922] border border-[#232B36] rounded-md p-8">
 
-                </h1>
-
-                <form
-                    onSubmit={handleLogin}
-                    className="space-y-5"
-                >
-
-                    <input
-
-                        type="email"
-
-                        placeholder="Email"
-
-                        className="w-full border rounded-lg p-3"
-
-                        value={email}
-
-                        onChange={(e) =>
-                            setEmail(e.target.value)
-                        }
-
-                    />
-
-                    <input
-
-                        type="password"
-
-                        placeholder="Password"
-
-                        className="w-full border rounded-lg p-3"
-
-                        value={password}
-
-                        onChange={(e) =>
-                            setPassword(e.target.value)
-                        }
-
-                    />
-
-                    <button
-
-                        className="w-full bg-blue-600 text-white rounded-lg p-3 hover:bg-blue-700"
-
+                    <form
+                        onSubmit={handleLogin}
+                        className="space-y-4"
                     >
 
-                        Login
+                        <div>
+                            <label className="block font-['IBM_Plex_Mono'] text-xs tracking-widest uppercase text-[#8A94A3] mb-2">
+                                Email
+                            </label>
+                            <input
 
-                    </button>
+                                type="email"
 
-                </form>
+                                placeholder="you@company.com"
 
-                {
+                                className="
+                                w-full
+                                bg-[#0B0F14]
+                                border border-[#232B36]
+                                rounded-md
+                                p-3
+                                text-sm
+                                font-['IBM_Plex_Sans']
+                                text-[#E6EAF0]
+                                placeholder:text-[#8A94A3]/50
+                                focus:outline-none
+                                focus:border-[#4FD1C5]/60
+                                "
 
-                    error &&
+                                value={email}
 
-                    <p className="text-red-600 mt-5">
+                                onChange={(e) =>
+                                    setEmail(e.target.value)
+                                }
 
-                        {error}
+                            />
+                        </div>
 
-                    </p>
+                        <div>
+                            <label className="block font-['IBM_Plex_Mono'] text-xs tracking-widest uppercase text-[#8A94A3] mb-2">
+                                Password
+                            </label>
+                            <input
 
-                }
+                                type="password"
+
+                                placeholder="••••••••"
+
+                                className="
+                                w-full
+                                bg-[#0B0F14]
+                                border border-[#232B36]
+                                rounded-md
+                                p-3
+                                text-sm
+                                font-['IBM_Plex_Sans']
+                                text-[#E6EAF0]
+                                placeholder:text-[#8A94A3]/50
+                                focus:outline-none
+                                focus:border-[#4FD1C5]/60
+                                "
+
+                                value={password}
+
+                                onChange={(e) =>
+                                    setPassword(e.target.value)
+                                }
+
+                            />
+                        </div>
+
+                        <button
+
+                            className="
+                            w-full
+                            font-['IBM_Plex_Mono']
+                            text-sm
+                            font-semibold
+                            bg-[#4FD1C5]
+                            text-[#0B0F14]
+                            rounded-md
+                            p-3.5
+                            mt-2
+                            hover:bg-[#4FD1C5]/90
+                            transition-colors
+                            "
+
+                        >
+
+                            Authenticate →
+
+                        </button>
+
+                    </form>
+
+                    {
+
+                        error &&
+
+                        <p className="font-['IBM_Plex_Mono'] text-sm text-[#E5484D] mt-5 border-t border-[#232B36] pt-4">
+
+                            {error}
+
+                        </p>
+
+                    }
+
+                </div>
+
+                <p className="font-['IBM_Plex_Mono'] text-xs text-[#8A94A3] text-center mt-6">
+                    SAML 2.0 · Binding: HTTP-POST · RSA-SHA256
+                </p>
 
             </div>
 

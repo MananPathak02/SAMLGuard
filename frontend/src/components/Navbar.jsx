@@ -1,37 +1,227 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
 
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    function logout() {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("assertion");
+
+        navigate("/");
+
+    }
+
+    function isActive(path) {
+
+        return location.pathname === path;
+
+    }
+
+    // -------------------------
+    // Links Before Login
+    // -------------------------
+
+    let links = [
+
+        {
+            to: "/",
+            label: "Home"
+        },
+
+        {
+            to: "/login",
+            label: "Login"
+        },
+
+        {
+            to: "/#service-providers",
+            label: "Service Providers"
+        }
+
+    ];
+
+    // -------------------------
+    // Links After Login
+    // -------------------------
+
+    if (token) {
+
+        if (role === "Admin") {
+
+            links = [
+
+                {
+                    to: "/",
+                    label: "Home"
+                },
+
+                {
+                    to: "/admin/dashboard",
+                    label: "Dashboard"
+                },
+
+                {
+                    to: "/",
+                    label: "Service Providers"
+                },
+
+                {
+                    to: "/assertion",
+                    label: "Assertion"
+                },
+
+                {
+                    to: "/audit",
+                    label: "Audit Logs"
+                }
+
+            ];
+
+        }
+
+        else if (role === "HR") {
+
+            links = [
+
+                {
+                    to: "/",
+                    label: "Home"
+                },
+
+                {
+                    to: "/hr/dashboard",
+                    label: "Dashboard"
+                },
+
+                {
+                    to: "/",
+                    label: "Service Providers"
+                },
+
+                {
+                    to: "/assertion",
+                    label: "Assertion"
+                }
+
+            ];
+
+        }
+
+        else if (role === "Employee") {
+
+            links = [
+
+                {
+                    to: "/",
+                    label: "Home"
+                },
+
+                {
+                    to: "/employee/dashboard",
+                    label: "Dashboard"
+                },
+
+                {
+                    to: "/",
+                    label: "Service Providers"
+                },
+
+                {
+                    to: "/assertion",
+                    label: "Assertion"
+                }
+
+            ];
+
+        }
+
+    }
+
     return (
 
-        <nav className="bg-slate-900 text-white shadow-lg">
+        <nav className="bg-[#0B0F14] border-b border-[#232B36]">
 
-            <div className="max-w-7xl mx-auto flex justify-between items-center p-5">
+            <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
 
-                <div>
+                <Link
+                    to="/"
+                    className="font-['IBM_Plex_Mono'] text-lg font-bold text-[#E6EAF0]"
+                >
+                    SAML<span className="text-[#4FD1C5]">Guard</span>
+                </Link>
 
-                    <Link
-                        to="/"
-                        className="text-3xl font-bold text-blue-400"
-                    >
-                        SAMLGuard
-                    </Link>
+                <div className="flex items-center gap-1 font-['IBM_Plex_Mono'] text-sm">
 
-                </div>
+                    {links.map((link) => (
 
-                <div className="space-x-8 text-lg">
+                        <Link
+                            key={link.label}
+                            to={link.to}
+                            className={`
+                                px-4 py-2 rounded-md transition-colors
+                                ${isActive(link.to)
+                                    ? "text-[#4FD1C5] bg-[#4FD1C5]/10"
+                                    : "text-[#8A94A3] hover:text-[#E6EAF0]"
+                                }
+                            `}
+                        >
 
-                    <Link to="/">Home</Link>
+                            {link.label}
 
-                    <Link to="/login">Login</Link>
+                        </Link>
 
-                    <Link to="/hr">HR Portal</Link>
+                    ))}
 
-                    <Link to="/employee">Employee</Link>
+                    {
+                        token && role === "Admin" &&
 
-                    <Link to="/admin">Admin</Link>
+                        <Link
+                            to="/attacks"
+                            className={`
+                                px-4 py-2 rounded-md transition-colors ml-2 border
+                                ${isActive("/attacks")
+                                    ? "text-[#E5484D] bg-[#E5484D]/10 border-[#E5484D]/40"
+                                    : "text-[#E5484D]/70 border-[#E5484D]/20 hover:text-[#E5484D] hover:border-[#E5484D]/40"
+                                }
+                            `}
+                        >
 
-                    <Link to="/attacks">Attack Lab</Link>
+                            Attack Lab
+
+                        </Link>
+
+                    }
+
+                    {
+
+                        token &&
+
+                        <button
+                            onClick={logout}
+                            className="
+                                ml-2
+                                px-4
+                                py-2
+                                rounded-md
+                                bg-[#232B36]
+                                text-[#E6EAF0]
+                                hover:bg-[#2A3341]
+                                transition-colors
+                            "
+                        >
+
+                            Logout
+
+                        </button>
+
+                    }
 
                 </div>
 

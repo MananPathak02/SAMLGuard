@@ -34,153 +34,153 @@ function AuditLogs() {
 
     return (
 
-        <div className="min-h-screen bg-slate-100 p-10">
+        <div className="max-w-7xl mx-auto p-12">
 
-            <div className="max-w-7xl mx-auto">
+            <div className="flex justify-between items-center mb-10">
 
-                <div className="flex justify-between items-center mb-10">
+                <div>
 
-                    <div>
+                    <p className="font-['IBM_Plex_Mono'] text-xs tracking-widest text-[#4FD1C5] uppercase mb-3">
+                        Admin Console
+                    </p>
 
-                        <h1 className="text-5xl font-bold">
+                    <h1 className="font-['IBM_Plex_Mono'] text-3xl font-bold text-[#E6EAF0]">
 
-                            Security Audit Logs
+                        Security Audit Logs
 
-                        </h1>
+                    </h1>
 
-                        <p className="text-gray-500 mt-2">
+                    <p className="font-['IBM_Plex_Sans'] text-sm text-[#8A94A3] mt-2">
 
-                            Monitor authentication events and SAML security attacks.
+                        Monitor authentication events and SAML security attacks.
 
-                        </p>
-
-                    </div>
-
-                    <button
-
-                        onClick={() => navigate("/admin/dashboard")}
-
-                        className="bg-blue-600 text-white px-6 py-3 rounded-lg"
-
-                    >
-
-                        Back to Dashboard
-
-                    </button>
+                    </p>
 
                 </div>
 
-                <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+                <button
 
-                    <table className="w-full">
+                    onClick={() => navigate("/admin/dashboard")}
 
-                        <thead className="bg-slate-800 text-white">
+                    className="font-['IBM_Plex_Mono'] text-sm border border-[#232B36] text-[#E6EAF0] px-5 py-3 rounded-md hover:bg-[#232B36] transition-colors"
 
-                            <tr>
+                >
 
-                                <th className="p-4 text-left">
+                    Back to Dashboard
 
-                                    #
+                </button>
 
-                                </th>
+            </div>
 
-                                <th className="p-4 text-left">
+            <div className="bg-[#131922] border border-[#232B36] rounded-md overflow-hidden">
 
-                                    Event
+                <table className="w-full font-['IBM_Plex_Sans'] text-sm">
 
-                                </th>
+                    <thead>
 
-                                <th className="p-4 text-left">
+                        <tr className="border-b border-[#232B36]">
 
-                                    Status
+                            <th className="p-4 text-left font-['IBM_Plex_Mono'] text-xs tracking-widest uppercase text-[#8A94A3] font-medium">
 
-                                </th>
+                                #
 
-                            </tr>
+                            </th>
 
-                        </thead>
+                            <th className="p-4 text-left font-['IBM_Plex_Mono'] text-xs tracking-widest uppercase text-[#8A94A3] font-medium">
 
-                        <tbody>
+                                Event
 
-                            {
+                            </th>
 
-                                logs.length === 0 ?
+                            <th className="p-4 text-left font-['IBM_Plex_Mono'] text-xs tracking-widest uppercase text-[#8A94A3] font-medium">
 
-                                (
+                                Status
 
-                                    <tr>
+                            </th>
 
-                                        <td
-                                            colSpan="3"
-                                            className="text-center p-10"
-                                        >
+                        </tr>
 
-                                            No audit logs found.
+                    </thead>
 
-                                        </td>
+                    <tbody>
 
-                                    </tr>
+                        {
 
-                                )
+                            logs.length === 0 ?
 
-                                :
+                            (
 
-                                logs.map((log, index) => (
+                                <tr>
 
-                                    <tr
-                                        key={index}
-                                        className="border-b hover:bg-slate-50"
+                                    <td
+                                        colSpan="3"
+                                        className="text-center p-10 text-[#8A94A3] font-['IBM_Plex_Mono'] text-sm"
                                     >
 
-                                        <td className="p-4">
+                                        No audit logs found.
 
-                                            {index + 1}
+                                    </td>
 
-                                        </td>
+                                </tr>
 
-                                        <td className="p-4">
+                            )
 
-                                            {log.event}
+                            :
 
-                                        </td>
+                            logs.map((log, index) => (
 
-                                        <td className="p-4">
+                                <tr
+                                    key={index}
+                                    className="border-b border-[#232B36] hover:bg-[#0B0F14] transition-colors"
+                                >
 
-                                            {
+                                    <td className="p-4 text-[#8A94A3] font-['IBM_Plex_Mono'] text-xs">
 
-                                                log.status === "Blocked"
+                                        {index + 1}
 
-                                                ?
+                                    </td>
 
-                                                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full">
+                                    <td className="p-4 text-[#E6EAF0]">
 
-                                                    {log.status}
+                                        {log.event}
 
-                                                </span>
+                                    </td>
 
-                                                :
+                                    <td className="p-4">
 
-                                                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                                        {
 
-                                                    {log.status}
+                                            log.status === "Blocked"
 
-                                                </span>
+                                            ?
 
-                                            }
+                                            <span className="font-['IBM_Plex_Mono'] text-xs text-[#E5484D] border border-[#E5484D]/40 px-3 py-1 rounded-full">
 
-                                        </td>
+                                                {log.status}
 
-                                    </tr>
+                                            </span>
 
-                                ))
+                                            :
 
-                            }
+                                            <span className="font-['IBM_Plex_Mono'] text-xs text-[#4FD1C5] border border-[#4FD1C5]/40 px-3 py-1 rounded-full">
 
-                        </tbody>
+                                                {log.status}
 
-                    </table>
+                                            </span>
 
-                </div>
+                                        }
+
+                                    </td>
+
+                                </tr>
+
+                            ))
+
+                        }
+
+                    </tbody>
+
+                </table>
 
             </div>
 

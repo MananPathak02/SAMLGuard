@@ -1,24 +1,89 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function HRPortal() {
 
     const navigate = useNavigate();
 
-    return (
+    const [checkingSession, setCheckingSession] = useState(true);
 
-        <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+    useEffect(() => {
 
-            <div className="bg-white rounded-2xl shadow-2xl w-[900px] p-12">
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token) {
+
+            setCheckingSession(false);
+            return;
+
+        }
+
+        if (role === "HR") {
+
+            navigate("/hr/dashboard", { replace: true });
+
+        }
+
+        else {
+
+            navigate("/403", { replace: true });
+
+        }
+
+    }, [navigate]);
+
+    // Show loading while checking existing SSO session
+
+    if (checkingSession) {
+
+        return (
+
+            <div className="min-h-screen bg-[#0B0F14] flex items-center justify-center">
 
                 <div className="text-center">
 
-                    <h1 className="text-5xl font-bold text-slate-800">
+                    <p className="font-['IBM_Plex_Mono'] text-[#4FD1C5] text-lg">
+
+                        Checking existing SAML session...
+
+                    </p>
+
+                    <p className="mt-3 text-[#8A94A3] font-['IBM_Plex_Sans']">
+
+                        Verifying authentication with Identity Provider
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        );
+
+    }
+
+    return (
+
+        <div className="min-h-screen bg-[#0B0F14] flex items-center justify-center p-6">
+
+            <div className="bg-[#131922] border border-[#232B36] rounded-md w-full max-w-4xl p-12">
+
+                <div>
+
+                    <p className="font-['IBM_Plex_Mono'] text-xs tracking-widest text-[#4FD1C5] uppercase mb-3">
+
+                        Service Provider
+
+                    </p>
+
+                    <h1 className="font-['IBM_Plex_Mono'] text-4xl font-bold text-[#E6EAF0]">
 
                         HR Portal
 
                     </h1>
 
-                    <p className="mt-5 text-xl text-gray-600">
+                    <p className="mt-4 font-['IBM_Plex_Sans'] text-[#8A94A3]">
 
                         Enterprise Human Resource Management System
 
@@ -26,46 +91,53 @@ function HRPortal() {
 
                 </div>
 
-                <div className="mt-12 grid grid-cols-2 gap-10">
+                <div className="mt-12 grid md:grid-cols-2 gap-10">
 
                     <div>
 
-                        <h2 className="text-3xl font-bold mb-5">
+                        <h2 className="font-['IBM_Plex_Mono'] text-sm tracking-widest uppercase text-[#8A94A3] mb-5">
 
                             Features
 
                         </h2>
 
-                        <ul className="space-y-4 text-lg">
+                        <ul className="space-y-3 font-['IBM_Plex_Sans'] text-sm text-[#E6EAF0]">
 
-                            <li>✔ Employee Records</li>
+                            {[
+                                "Employee Records",
+                                "Payroll Management",
+                                "Leave Management",
+                                "Attendance Tracking",
+                                "Recruitment Dashboard",
+                                "SAML 2.0 Single Sign-On",
+                            ].map((item) => (
 
-                            <li>✔ Payroll Management</li>
+                                <li key={item} className="flex items-center gap-3">
 
-                            <li>✔ Leave Management</li>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#4FD1C5]" />
 
-                            <li>✔ Attendance Tracking</li>
+                                    {item}
 
-                            <li>✔ Recruitment Dashboard</li>
+                                </li>
 
-                            <li>✔ SAML 2.0 Single Sign-On</li>
+                            ))}
 
                         </ul>
 
                     </div>
 
-                    <div className="bg-slate-50 rounded-xl p-8">
+                    <div className="bg-[#0B0F14] border border-[#232B36] rounded-md p-8">
 
-                        <h2 className="text-3xl font-bold mb-8">
+                        <h2 className="font-['IBM_Plex_Mono'] text-sm tracking-widest uppercase text-[#8A94A3] mb-4">
 
                             Authentication
 
                         </h2>
 
-                        <p className="text-gray-600 mb-8">
+                        <p className="font-['IBM_Plex_Sans'] text-sm text-[#8A94A3] mb-8 leading-relaxed">
 
-                            This portal is protected by the
-                            SAMLGuard Identity Provider.
+                            No active SAML session was found. Authenticate through the
+                            SAMLGuard Identity Provider to access this Service Provider.
 
                         </p>
 
@@ -75,17 +147,20 @@ function HRPortal() {
 
                             className="
                             w-full
-                            bg-blue-600
-                            text-white
-                            py-4
-                            rounded-xl
-                            text-xl
-                            hover:bg-blue-700
+                            font-['IBM_Plex_Mono']
+                            text-sm
+                            bg-[#4FD1C5]
+                            text-[#0B0F14]
+                            font-semibold
+                            py-3.5
+                            rounded-md
+                            hover:bg-[#4FD1C5]/90
+                            transition-colors
                             "
 
                         >
 
-                            Login with SAML
+                            Login with SAML →
 
                         </button>
 

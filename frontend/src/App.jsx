@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import CompanyWiki from "./pages/CompanyWiki";
+import EmployeeDirectory from "./pages/EmployeeDirectory";
+
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 
@@ -109,6 +112,24 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <AssertionViewer />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/wiki"
+                    element={
+                        <ProtectedRoute>
+                            <CompanyWiki />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/directory"
+                    element={
+                        <ProtectedRoute>
+                            <EmployeeDirectory />
                         </ProtectedRoute>
                     }
                 />
