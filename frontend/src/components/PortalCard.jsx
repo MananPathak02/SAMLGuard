@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 
 function PortalCard({
 
+    index,
     title,
     description,
     button,
-    link
+    link,
 
 }) {
 
@@ -13,21 +14,38 @@ function PortalCard({
 
         <div
             className="
-            bg-white
-            rounded-xl
-            shadow-xl
+            bg-[#131922]
+            border
+            border-[#232B36]
+            rounded-md
             p-8
-            hover:scale-105
-            transition
+            transition-all
+            duration-300
+            hover:border-[#4FD1C5]/50
+            hover:-translate-y-1
             "
         >
 
+            <p
+                className="
+                font-['IBM_Plex_Mono']
+                text-xs
+                tracking-widest
+                text-[#4FD1C5]
+                uppercase
+                mb-5
+                "
+            >
+                {index}
+            </p>
+
             <h2
                 className="
-                text-3xl
-                font-bold
-                text-blue-700
-                mb-5
+                font-['IBM_Plex_Mono']
+                text-2xl
+                font-semibold
+                text-[#E6EAF0]
+                leading-tight
                 "
             >
                 {title}
@@ -35,25 +53,32 @@ function PortalCard({
 
             <p
                 className="
-                text-gray-600
-                mb-8
+                mt-5
+                text-sm
+                leading-relaxed
+                font-['IBM_Plex_Sans']
+                text-[#8A94A3]
+                min-h-[90px]
                 "
             >
                 {description}
             </p>
 
-            <Link
-                to={link}
-            >
+            <Link to={link}>
 
                 <button
                     className="
-                    bg-blue-600
-                    text-white
-                    px-6
-                    py-3
-                    rounded-lg
-                    hover:bg-blue-700
+                    mt-8
+                    w-full
+                    border
+                    border-[#4FD1C5]/40
+                    rounded-md
+                    py-3.5
+                    font-['IBM_Plex_Mono']
+                    text-sm
+                    text-[#4FD1C5]
+                    hover:bg-[#4FD1C5]/10
+                    transition-colors
                     "
                 >
                     {button}
