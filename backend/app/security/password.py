@@ -1,28 +1,22 @@
-# The Purpose of this File is to Verify password and hash password 
-
-from passlib.context import CryptContext
-
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
-
+import bcrypt
 
 def hash_password(password: str) -> str:
     """
     Convert a plain text password into a secure bcrypt hash.
     """
-    return pwd_context.hash(password)
+    pwd_bytes = password.encode('utf-8')
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')
 
 
-def verify_password(
-    plain_password: str,
-    hashed_password: str
-) -> bool:
+def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
     Verify a plain password against its bcrypt hash.
     """
-    return pwd_context.verify(
-        plain_password,
-        hashed_password
-    )
+    try:
+        pwd_bytes = plain_password.encode('utf-8')
+        hash_bytes = hashed_password.encode('utf-8')
+        return bcrypt.checkpw(pwd_bytes, hash_bytes)
+    except Exception as e:
+        print("Password verification exception:", e)
+        return False
