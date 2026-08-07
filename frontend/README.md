@@ -1,16 +1,32 @@
-# React + Vite
+# 🛡️ SAMLGuard Frontend (HTML, CSS, JS)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Standard HTML5, CSS3, and JavaScript (ES6+) frontend for SAMLGuard Identity Provider and SSO Service Provider portals.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Open `index.html` directly in any web browser, or serve it using any static web server:
 
-## React Compiler
+### Option 1: Python HTTP Server
+```bash
+python -m http.server 5173
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Option 2: Live Server (VS Code Extension)
+Right click `index.html` and select **Open with Live Server**.
 
-## Expanding the ESLint configuration
+## 📁 File Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `index.html` - Identity Provider landing page
+- `login.html` - Identity Provider login & assertion generator
+- `admin-portal.html` & `admin-dashboard.html` - Security Administration Console
+- `hr-portal.html` & `hr-dashboard.html` - HR Portal & Dashboard
+- `employee-portal.html` & `employee-dashboard.html` - Employee Self-Service Portal & Dashboard
+- `attack-lab.html` - SAML Replay, XSW, and Attribute Injection attack testing simulator
+- `assertion-viewer.html` - SAML XML assertion viewer
+- `audit-logs.html` - Security Audit Logs
+- `company-wiki.html` - Company Wiki documentation
+- `employee-directory.html` - Employee Directory with live search
+- `403.html` & `404.html` - Access Denied and Not Found pages
+- `assets/css/style.css` - Custom dark mode theme & responsive layout system
+- `assets/js/api.js` & `assets/js/config.js` - FastAPI backend integration with JWT authentication header
+- `assets/js/navbar.js` - Dynamic header & RBAC navigation bar

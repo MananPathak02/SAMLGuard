@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMLGuard | HR Portal</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header id="navbar"></header>
+
+    <main class="center-screen">
+        <div id="checkingSession" style="text-align: center;">
+            <p class="font-mono text-teal" style="font-size: 1.125rem;">Checking existing SAML session...</p>
+            <p class="subtext">Verifying authentication with Identity Provider</p>
+        </div>
+
+        <div id="portalContent" class="portal-container" style="display: none;">
+            <div class="card" style="padding: 3rem;">
+                <span class="eyebrow">Service Provider</span>
+                <h1 class="heading-lg">HR Portal</h1>
+                <p class="subtext">Enterprise Human Resource Management System</p>
+
+                <div class="grid grid-cols-2" style="margin-top: 3rem; gap: 2.5rem;">
+                    <div>
+                        <h2 class="eyebrow" style="color: var(--text-secondary); margin-bottom: 1.25rem;">Features</h2>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;" class="font-sans text-primary">
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>Employee Records</li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>Payroll Management</li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>Leave Management</li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>Attendance Tracking</li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>Recruitment Dashboard</li>
+                            <li style="display: flex; align-items: center; gap: 0.75rem;"><span class="dot-teal"></span>SAML 2.0 Single Sign-On</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="background-color: var(--bg-dark); padding: 2rem;">
+                        <h2 class="eyebrow" style="color: var(--text-secondary); margin-bottom: 1rem;">Authentication</h2>
+                        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">
+                            No active SAML session was found. Authenticate through the SAMLGuard Identity Provider to access this Service Provider.
+                        </p>
+                        <a href="login.html" class="btn btn-primary" style="padding: 0.875rem;">Login with SAML →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/portal.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => checkPortalSession("HR"));
+    </script>
+</body>
+</html>

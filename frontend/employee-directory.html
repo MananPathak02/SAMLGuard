@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMLGuard | Employee Directory</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header id="navbar"></header>
+
+    <main>
+        <div class="container">
+            <span class="eyebrow">Trusted Enterprise Application</span>
+            <h1 class="heading-lg">Employee Directory</h1>
+            <p class="subtext">
+                Enterprise employee directory protected by the <span style="color: var(--text-primary);">SAMLGuard Identity Provider</span>. Any authenticated employee can securely search corporate users without authenticating again.
+            </p>
+
+            <!-- Statistics -->
+            <div class="grid grid-cols-4" style="margin-top: 2.5rem;">
+                <div class="card">
+                    <h2 class="heading-lg text-teal">124</h2>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">Employees</p>
+                </div>
+                <div class="card">
+                    <h2 class="heading-lg text-teal">8</h2>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">Departments</p>
+                </div>
+                <div class="card">
+                    <h2 class="heading-lg text-teal">SSO</h2>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">Authentication</p>
+                </div>
+                <div class="card">
+                    <h2 class="heading-lg" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span class="dot-teal"></span> Online
+                    </h2>
+                    <p style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">Directory Service</p>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div style="margin-top: 2.5rem;">
+                <input type="text" id="searchEmployees" class="form-input" placeholder="Search by employee, role or department..." style="padding: 0.875rem 1.25rem; font-size: 0.9375rem;">
+            </div>
+
+            <!-- Directory Table -->
+            <div class="table-wrapper" style="margin-top: 2rem;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+                        <tr>
+                            <td colSpan="4" style="text-align: center; padding: 2rem; color: var(--text-secondary);" class="font-mono">
+                                Loading directory...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Security Details -->
+            <div class="card" style="margin-top: 2.5rem; padding: 2rem;">
+                <h2 class="heading-md" style="margin-bottom: 1.5rem;">Authentication Details</h2>
+                <div class="kv-row">
+                    <span class="kv-label">Authentication</span>
+                    <span class="kv-value">SAML 2.0 Single Sign-On</span>
+                </div>
+                <div class="kv-row">
+                    <span class="kv-label">Identity Provider</span>
+                    <span class="kv-value">SAMLGuard</span>
+                </div>
+                <div class="kv-row">
+                    <span class="kv-label">Authorization</span>
+                    <span class="kv-value">Authenticated Users</span>
+                </div>
+                <div class="kv-row">
+                    <span class="kv-label">Additional Login</span>
+                    <span class="kv-value text-teal">Not Required</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 2.5rem;">
+                <button onclick="window.history.back()" class="btn btn-secondary" style="width: auto; padding: 0.75rem 1.5rem;">
+                    ← Back
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/directory.js"></script>
+</body>
+</html>

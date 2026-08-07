@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMLGuard | SAML Attack Lab</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header id="navbar"></header>
+
+    <main>
+        <div class="container">
+            <span class="eyebrow eyebrow-red">Security Testing</span>
+            <h1 class="heading-lg">SAML Attack Lab</h1>
+            <p class="subtext">Simulate common SAML attacks and verify real-time detection & enforcement mechanisms.</p>
+
+            <div class="grid grid-cols-3" style="margin-top: 3rem;">
+                <!-- Replay Attack -->
+                <div class="card">
+                    <h2 class="heading-md" style="font-size: 1.25rem;">Replay Attack</h2>
+                    <p class="text-secondary" style="margin-top: 1rem; font-size: 0.875rem; min-height: 70px;">
+                        Attempts to reuse a previously issued SAML Assertion after expiration or invalidation.
+                    </p>
+                    <button id="replayBtn" class="btn btn-red" style="margin-top: 1.5rem;">Simulate</button>
+                    <div style="margin-top: 1.5rem; font-size: 0.875rem;">
+                        <strong>Status:</strong>
+                        <p id="replayStatus" style="margin-top: 0.5rem; color: var(--accent-red); font-family: var(--font-mono);">-</p>
+                    </div>
+                </div>
+
+                <!-- XML Signature Wrapping -->
+                <div class="card">
+                    <h2 class="heading-md" style="font-size: 1.25rem;">XML Signature Wrapping</h2>
+                    <p class="text-secondary" style="margin-top: 1rem; font-size: 0.875rem; min-height: 70px;">
+                        Attempts to inject untrusted payload while moving original signature elements.
+                    </p>
+                    <button id="xswBtn" class="btn" style="background-color: #F59E0B; color: #000; margin-top: 1.5rem;">Simulate</button>
+                    <div style="margin-top: 1.5rem; font-size: 0.875rem;">
+                        <strong>Status:</strong>
+                        <p id="xswStatus" style="margin-top: 0.5rem; color: #F59E0B; font-family: var(--font-mono);">-</p>
+                    </div>
+                </div>
+
+                <!-- Attribute Injection -->
+                <div class="card">
+                    <h2 class="heading-md" style="font-size: 1.25rem;">Attribute Injection</h2>
+                    <p class="text-secondary" style="margin-top: 1rem; font-size: 0.875rem; min-height: 70px;">
+                        Attempts to modify user privilege level (e.g. changing Employee role to Admin inside assertion).
+                    </p>
+                    <button id="attrBtn" class="btn btn-primary" style="margin-top: 1.5rem;">Simulate</button>
+                    <div style="margin-top: 1.5rem; font-size: 0.875rem;">
+                        <strong>Status:</strong>
+                        <p id="attrStatus" style="margin-top: 0.5rem; color: var(--accent-teal); font-family: var(--font-mono);">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/attacklab.js"></script>
+</body>
+</html>
