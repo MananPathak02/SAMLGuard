@@ -1,3 +1,5 @@
 const CONFIG = {
-    API_BASE_URL: "https://samlguard.onrender.com"
+    API_BASE_URL: (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.protocol === "file:")
+        ? "http://localhost:8000"
+        : "https://samlguard.onrender.com"
 };

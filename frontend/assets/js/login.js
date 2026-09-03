@@ -52,7 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         } catch (error) {
             console.error("Login failed:", error);
-            errorMessage.textContent = "Invalid email or password";
+            let message = "Invalid email or password";
+            if (error.status === 401) {
+                message = "Invalid email or password";
+            } else if (error.data && error.data.detail) {
+                message = typeof error.data.detail === "string" ? error.data.detail : JSON.stringify(error.data.detail);
+            } else if (error.message) {
+                message = error.message;
+            }
+            errorMessage.textContent = message;
             errorMessage.style.display = "block";
             loginBtn.disabled = false;
             loginBtn.textContent = "Authenticate →";

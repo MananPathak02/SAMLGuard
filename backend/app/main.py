@@ -38,6 +38,12 @@ app.include_router(audit_router)
 @app.on_event("startup")
 def on_startup():
     try:
+        from app.saml.crypto import ensure_certificates_exist
+        ensure_certificates_exist()
+    except Exception as e:
+        print("Certificate startup notification:", e)
+
+    try:
         from seed import init_db
         init_db()
     except Exception as e:

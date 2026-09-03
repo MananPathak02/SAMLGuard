@@ -1,13 +1,16 @@
-# Assertion is an XML document containing the users identity
-
+# Assertion is an XML document containing the user's identity
 from datetime import datetime, timezone
 from uuid import uuid4
-
 from lxml import etree
 
+from app.saml.crypto import sign_xml_assertion
 
-def generate_assertion(email: str, role: str, department: str):
 
+def generate_assertion(email: str, role: str, department: str) -> str:
+    """
+    Generates a SAML 2.0 Assertion XML element containing the user's identity claims,
+    and cryptographically signs it with the IdP's RSA private key and X.509 certificate.
+    """
     assertion = etree.Element("Assertion")
 
     assertion.set("ID", "_" + str(uuid4()))
@@ -52,8 +55,6 @@ def generate_assertion(email: str, role: str, department: str):
         "AttributeValue"
     ).text = department
 
-    return etree.tostring(
-        assertion,
-        pretty_print=True,
-        encoding="unicode"
-    )
+    # Cryptographically sign assertion using signxml & IdP private key
+    signed_xml_str = sign_xml_assertion(assertion)
+    return signed_xml_str
