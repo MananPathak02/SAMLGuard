@@ -5,11 +5,8 @@ from app.api.v1.auth import router as auth_router
 from app.api.v1.users import router as users_router
 from app.api.v1.saml import router as saml_router
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1.replay import router as replay_router
-from app.api.v1.xsw import router as xsw_router
 from app.database.database import engine, SessionLocal
 from app.api.v1.audit import router as audit_router
-from app.api.v1.attribute_injection import router as attribute_router
 from app.models.user import User
 from app.models.role import Role
 
@@ -30,9 +27,6 @@ app.add_middleware(
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(saml_router)
-app.include_router(replay_router)
-app.include_router(xsw_router)
-app.include_router(attribute_router)
 app.include_router(audit_router)
 
 @app.on_event("startup")
